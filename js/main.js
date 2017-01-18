@@ -91,10 +91,14 @@ function validateEmail(_evt){
 	var correo = document.getElementById("input-email");
 	var texto = document.createTextNode("Verifique su Email");
 	
-	if(!/([a-zA-Z0-9(-_.)]+[@][a-zA-Z0-9]+[.][a-zA-Z]+)/g.test(correo.value)){
-		mensaje(correo,texto);
-	}else{
+	if(/([a-zA-Z0-9(-_.)]+[@][a-zA-Z0-9]+[.][a-zA-Z]+)/g.test(correo.value)){
+		
 		correo.parentNode.removeChild(correo.nextSibling);
+	}else{
+		if(correo.value == ""){
+		   mensaje(correo,texto);	
+		}
+		
 	}
 }
 
