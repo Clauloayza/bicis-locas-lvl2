@@ -33,6 +33,7 @@ function validateM(_evt){
 					
 			}
 		document.getElementById("name").value= mayuscula;
+		name.parentNode.removeChild(name.nextSibling);
 	}
 }
 
@@ -70,6 +71,7 @@ function validateA(_evt){
 			   espacio = true;
 			}
 		document.getElementById("lastname").value= mayuscula;
+		apellido.parentNode.removeChild(apellido.nextSibling);
 	}
 }
 
@@ -92,7 +94,7 @@ function validateEmail(_evt){
 	if(!/([a-zA-Z0-9(-_.)]+[@][a-zA-Z0-9]+[.][a-zA-Z]+)/g.test(correo.value)){
 		mensaje(correo,texto);
 	}else{
-		
+		correo.parentNode.removeChild(correo.nextSibling);
 	}
 }
 
@@ -106,7 +108,9 @@ function validatePassword(_evt){
 	
 	if(valor.value==="123456" || valor.value==="098754" || valor.value==="password"){
       mensaje(valor,texto);
-    }
+    }else{
+		valor.parentNode.removeChild(valor.nextSibling);
+	}
 }
 
 
@@ -118,7 +122,7 @@ function validateSelect(_evt){
 	if(tipo.value ==0){
 		mensaje(tipo,texto);
 	}else{
-		mensaje(tipo,texto)="";
+		tipo.parentNode.removeChild(tipo.nextSibling);
 	}
 }
 
