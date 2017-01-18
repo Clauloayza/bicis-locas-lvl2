@@ -119,7 +119,7 @@ function validateSelect(_evt){
 	var tipo= document.querySelector("select");
 	var texto= document.createTextNode("Debes seleccionar al menos un tipo de bici");
 	
-	if(tipo.value ==0){
+	if(tipo.value == 0){
 		mensaje(tipo,texto);
 	}else{
 		tipo.parentNode.removeChild(tipo.nextSibling);
