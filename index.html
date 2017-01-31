@@ -41,7 +41,7 @@
             <input type="password" id="input-password" class="form-control" placeholder="Ingrese su contraseña" onkeyup="validatePassword(event)">
           </div>
           <div class="form-group input-box">
-            <select class="form-control" onclick="validateSelect(event)">
+            <select class="form-control" onchange="validateSelect(event)" id="select">
               <option value="0">Selecciona tu tipo de bici</option>
               <option value="urbana">Urbana</option>
               <option value="treking">Treking</option>

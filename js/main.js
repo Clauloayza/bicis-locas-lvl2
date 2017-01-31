@@ -1,21 +1,59 @@
-function mensaje(campo,texto){
+/*function mensaje(campo,texto){
 	var cajaNegra = document.createElement('span');
 	cajaNegra.appendChild(texto);
 	var padre= campo.parentNode;
 	
 	var ventana= padre.appendChild(cajaNegra);
 	return ventana;
+}*/
+
+//Creando Caja Negra
+function cuadroSpan(elementoInput,textoInput){
+    
+    //crear Span
+    var cajaNegra = document.createElement("span");
+    var contenido = document.createTextNode(textoInput);
+    cajaNegra.appendChild(contenido);
+    var padre = elementoInput.parentNode;
+    padre.appendChild(cajaNegra);
+}
+
+
+function mensaje(campo,texto){
+    var elemento = document.getElementById(campo);
+       
+    if(elemento.nextSibling == null) {
+        cuadroSpan(elemento,texto);
+    } else { 
+        if(elemento.nextSibling.tagName == 'SPAN'){
+            elemento.nextSibling.innerHTML = texto;
+            
+        } else {
+            elemento.parentNode.removeChild(elemento.nextSibling); 
+            cuadroSpan(elemento,texto);
+        }        
+    }
+}
+
+
+function eliminar(campo){
+    
+    var elemento = document.getElementById(campo);
+    
+    if(elemento.nextSibling != null) {
+        elemento.parentNode.removeChild(elemento.nextSibling);
+    }
 }
 
 
 //NAME
 function validateM(_evt){
 	var name = document.getElementById("name");
-   	var texto = document.createTextNode("Debe ingresar su nombre");
+   	var texto = "Debe ingresar su nombre";
 	
 	
 	if(name.value ==""){
-		mensaje(name,texto);
+		mensaje("name",texto);
 	}else{
 		var nameArray= name.value.split("");
         var primeraLetra= nameArray[0];
@@ -30,10 +68,11 @@ function validateM(_evt){
 			mayuscula += nameArray[i];
 			if(nameArray[i] ==" ")
 			espacio = true;
+           
 					
 			}
 		document.getElementById("name").value= mayuscula;
-		name.parentNode.removeChild(name.nextSibling);
+		 eliminar("name");
 	}
 }
 
@@ -51,10 +90,10 @@ function validateNumero(_evt){
 //LASTNAME
 function validateA(_evt){
 	var apellido = document.getElementById("lastname");
-   	var texto = document.createTextNode("Debe ingresar su Apellido");
+   	var texto = "Debe ingresar su Apellido";
 	
 	if(apellido.value ==""){
-		mensaje(apellido,texto);
+		mensaje("lastname",texto);
 	}else{
 		var apellidoArray= apellido.value.split("");
         var primeraLetra= apellidoArray[0];
@@ -69,9 +108,10 @@ function validateA(_evt){
 			   mayuscula += apellidoArray[i];
 			   if(apellidoArray[i] ==" ")
 			   espacio = true;
+                
 			}
 		document.getElementById("lastname").value= mayuscula;
-		apellido.parentNode.removeChild(apellido.nextSibling);
+		eliminar("lastname");
 	}
 }
 
@@ -89,14 +129,14 @@ function validateNum2(_evt){
 //EMAIL
 function validateEmail(_evt){
 	var correo = document.getElementById("input-email");
-	var texto = document.createTextNode("Verifique su Email");
+	var texto = "Verifique su Email";
 	
 	if(/([a-zA-Z0-9(-_.)]+[@][a-zA-Z0-9]+[.][a-zA-Z]+)/g.test(correo.value)){
 		
-		correo.parentNode.removeChild(correo.nextSibling);
+		eliminar("input-email");
 	}else{
-		if(correo.value == ""){
-		   mensaje(correo,texto);	
+		if(correo.value.length >= 0){
+		   mensaje("input-email",texto);	
 		}
 		
 	}
@@ -104,29 +144,35 @@ function validateEmail(_evt){
 
 
 //PASSWORD
-document.getElementById("input-password").setAttribute("minlength","6");
+//document.getElementById("input-password").setAttribute("minlength","6");
 
 function validatePassword(_evt){
+    
+    //Input
 	var valor= document.getElementById("input-password");
-	var texto = document.createTextNode("La contraseña debe tener al menos 6 caracteres");
+    
+    //Texto Span
+	var texto = "La contraseña debe tener al menos 6 caracteres";
 	
-	if(valor.value==="123456" || valor.value==="098754" || valor.value==="password"){
-      mensaje(valor,texto);
+	if(valor.value==="123456" || valor.value.length <= 6|| valor.value==="098754" || valor.value==="password" || valor.value=== ""){
+      mensaje("input-password",texto);
     }else{
-		valor.parentNode.removeChild(valor.nextSibling);
+		 eliminar("input-password");
 	}
 }
 
 
 //SELECTOR TYPE
 function validateSelect(_evt){
-	var tipo= document.querySelector("select");
-	var texto= document.createTextNode("Debes seleccionar al menos un tipo de bici");
+	var tipo= document.getElementById("select");
+	var texto= "Debes seleccionar al menos un tipo de bici";
 	
-	if(tipo.value == 0){
-		mensaje(tipo,texto);
+	if(tipo.value =="0"){
+		mensaje("select",texto);
 	}else{
-		tipo.parentNode.removeChild(tipo.nextSibling);
+		if(tipo.value == "urbana" || tipo.value == "treking" || tipo.value == "electrica" || tipo.value == "estatica"){
+           eliminar("select");
+        }
 	}
 }
 
