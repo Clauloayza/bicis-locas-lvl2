@@ -2,11 +2,11 @@
 	var cajaNegra = document.createElement('span');
 	cajaNegra.appendChild(texto);
 	var padre= campo.parentNode;
-	
 	var ventana= padre.appendChild(cajaNegra);
 	return ventana;
 }*/
 
+//funciones 
 //Creando Caja Negra
 function cuadroSpan(elementoInput,textoInput){
     
