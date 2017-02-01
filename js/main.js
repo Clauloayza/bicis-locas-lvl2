@@ -6,15 +6,20 @@
 	return ventana;
 }*/
 
+<<<<<<< HEAD
 //funciones 
 //Creando Caja Negra
 function cuadroSpan(elementoInput,textoInput){
+=======
+
+function cuadroSpan(input,message){
+>>>>>>> master
     
     //crear Span
     var cajaNegra = document.createElement("span");
-    var contenido = document.createTextNode(textoInput);
+    var contenido = document.createTextNode(message);
     cajaNegra.appendChild(contenido);
-    var padre = elementoInput.parentNode;
+    var padre = input.parentNode;
     padre.appendChild(cajaNegra);
 }
 
