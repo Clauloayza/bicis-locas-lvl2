@@ -168,18 +168,19 @@ function validatePassword(_evt){
 
 //SELECTOR TYPE
 function validateSelect(_evt){
+	console.log("hola");
 	var tipo= document.getElementById("select");
 	var texto= "Debes seleccionar al menos un tipo de bici";
-	
+	console.log(tipo.value);
 	if(tipo.value =="0"){
 		mensaje("select",texto);
 	}else{
+		
 		if(tipo.value == "urbana" || tipo.value == "treking" || tipo.value == "electrica" || tipo.value == "estatica"){
            eliminar("select");
         }
 	}
 }
-
 
 //GLOBAL
 function validateForm(){
