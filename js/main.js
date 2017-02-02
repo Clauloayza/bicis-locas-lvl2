@@ -72,9 +72,8 @@ function validateM(_evt){
 			mayuscula += nameArray[i];
 			if(nameArray[i] ==" ")
 			espacio = true;
-           
-					
-			}
+           }
+		
 		document.getElementById("name").value= mayuscula;
 		 eliminar("name");
 	}
